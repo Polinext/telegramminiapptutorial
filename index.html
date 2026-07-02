@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260702-5" />
   </head>
   <body>
     <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
@@ -191,22 +191,6 @@
                 <li>Подходит для больших проектов</li>
                 <li>Понимает бизнес-логику</li>
               </ul>
-              <div class="prompt-box">
-                <div class="prompt-label">
-                  <span>Пример задачи</span>
-                  <button class="copy-button" type="button" data-copy="codex-prompt">
-                    Скопировать
-                  </button>
-                </div>
-                <blockquote id="codex-prompt">
-                  «Создай Telegram Mini App для страховой компании, подключи
-                  авторизацию, сделай личный кабинет, оформи дизайн и закоммить
-                  изменения».
-                </blockquote>
-              </div>
-              <p class="result-note">
-                Codex способен выполнить почти весь этот процесс как агент.
-              </p>
             </article>
 
             <article class="compare-card claude-card">
@@ -226,20 +210,6 @@
                 <li>Подробно объясняет свои действия</li>
                 <li>Работает с огромными проектами</li>
               </ul>
-              <div class="prompt-box">
-                <div class="prompt-label">
-                  <span>Пример задачи</span>
-                  <button class="copy-button" type="button" data-copy="claude-prompt">
-                    Скопировать
-                  </button>
-                </div>
-                <blockquote id="claude-prompt">
-                  «Переделай архитектуру моего проекта».
-                </blockquote>
-              </div>
-              <p class="result-note">
-                Claude часто делает это очень аккуратно.
-              </p>
             </article>
           </div>
 
@@ -888,6 +858,50 @@
                   <figcaption>В приложении сотрудник вводит свои данные и попадает в личный кабинет</figcaption>
                 </figure>
               </div>
+
+              <div class="sheets-live-sync" id="sheets-sync">
+                <div class="sheets-live-sync-copy">
+                  <span>Важно настроить отдельно</span>
+                  <h3>Чтобы изменения из таблицы появлялись в приложении</h3>
+                  <p>
+                    Само по себе приложение не узнаёт, что вы изменили данные
+                    в Google Sheets. Таблицу и Mini App нужно один раз связать
+                    через Google Apps Script или backend.
+                  </p>
+                  <p>
+                    После настройки вы продолжаете работать в привычной
+                    таблице: меняете должность, смены, документы, товары или
+                    статусы — а приложение получает актуальную информацию при
+                    открытии, обновлении или автоматически в режиме реального
+                    времени.
+                  </p>
+                  <div class="sheets-codex-prompt">
+                    <b>Что написать Codex:</b>
+                    <p>
+                      «Помоги связать мою Google Таблицу с Telegram Mini App.
+                      Дай подробную пошаговую инструкцию и настрой приложение
+                      так, чтобы изменения из таблицы автоматически появлялись
+                      в приложении в режиме реального времени».
+                    </p>
+                  </div>
+                  <p class="sheets-live-note">
+                    Codex уточнит структуру таблицы, подскажет, какие доступы
+                    нужны, поможет создать связку и объяснит, куда добавить
+                    полученный код.
+                  </p>
+                </div>
+                <figure class="sheets-sync-shot">
+                  <img
+                    src="assets/google-sheets-live-sync-redacted.png"
+                    alt="Пример инструкции Codex по подключению Google Sheets к приложению"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    Пример: Codex объясняет, как связать таблицу и приложение,
+                    чтобы данные обновлялись автоматически
+                  </figcaption>
+                </figure>
+              </div>
             </div>
 
             <article class="auth-scenario customer-auth">
@@ -1015,184 +1029,196 @@
         <div class="shell">
           <div class="section-heading">
             <span class="section-number">07</span>
-            <p>Публикуем проект в интернете</p>
+            <p>Публикуем проект и подключаем Telegram</p>
           </div>
 
           <div class="hosting-intro">
-            <h2>Как проект<br />попадает <span>в интернет?</span></h2>
+            <h2>Хостинг:<br />от файлов <span>до Telegram-бота</span></h2>
             <p>
-              Для публикации нам понадобятся три разных инструмента. Они не
-              заменяют друг друга: один хранит код, второй запускает проект,
-              третий даёт ему красивый адрес.
+              После создания Mini App нам нужно не просто получить код, а
+              опубликовать его в интернете и подключить к Telegram. Идём по
+              цепочке: <strong>Codex → GitHub → DigitalOcean → BotFather</strong>.
             </p>
           </div>
 
-          <div class="hosting-flow" aria-label="Схема публикации проекта">
-            <article class="hosting-node github-node">
-              <span class="hosting-step">01 · Код</span>
-              <div class="hosting-logo">GH</div>
-              <h3>GitHub</h3>
-              <p>Хранит проект и всю историю изменений.</p>
-              <strong>$0</strong>
+          <div class="hosting-roadmap" aria-label="Пошаговая схема публикации Mini App">
+            <article class="hosting-roadmap-card codex-files-step">
+              <span class="hosting-step">Шаг 01</span>
+              <div class="hosting-card-copy">
+                <h3>Попросите Codex подготовить файлы</h3>
+                <p>
+                  В конце работы напишите Codex: «Подготовь все файлы проекта
+                  для загрузки на GitHub». В ответ вам нужен архив или папка,
+                  где лежат <code>index.html</code>, <code>styles.css</code>,
+                  <code>script.js</code>, <code>README.md</code>, <code>.nojekyll</code>
+                  и папка <code>assets</code> с картинками.
+                </p>
+                <div class="hosting-prompt-box">
+                  <b>Запрос в Codex:</b>
+                  <span>Подготовь актуальный архив для загрузки на GitHub и перечисли, какие файлы внутри.</span>
+                </div>
+              </div>
+              <figure class="hosting-files-preview">
+                <img src="assets/hosting-files-codex.png" alt="Пример архива с файлами для загрузки на GitHub" loading="lazy" />
+                <figcaption>Пример: Codex прислал архив с файлами проекта</figcaption>
+              </figure>
             </article>
-            <div class="hosting-arrow">
-              <span>push</span>
-              <i>→</i>
-            </div>
-            <article class="hosting-node ocean-node">
-              <span class="hosting-step">02 · Хостинг</span>
-              <div class="hosting-logo">DO</div>
-              <h3>DigitalOcean</h3>
-              <p>Запускает код и делает проект доступным онлайн.</p>
-              <strong>от $0</strong>
+
+            <article class="hosting-roadmap-card compact-hosting-step featured-hosting-step">
+              <span class="hosting-step">Шаг 02</span>
+              <div>
+                <h3>Загрузите проект на GitHub и подключите DigitalOcean</h3>
+                <p>
+                  GitHub — место, где лежит код проекта. Создаём репозиторий,
+                  загружаем туда файлы из архива, а затем подключаем этот
+                  репозиторий к DigitalOcean. DigitalOcean публикует проект и
+                  выдаёт готовую ссылку вида <strong>project-name.ondigitalocean.app</strong>.
+                  Первые 3 статических приложения можно использовать бесплатно,
+                  дальше ориентир — около <strong>$3 в месяц</strong>.
+                </p>
+                <div class="live-link-demo">
+                  <span>После деплоя у вас появится ссылка</span>
+                  <b>https://your-app.ondigitalocean.app</b>
+                </div>
+                <figure class="hosting-video-wrap">
+                  <video
+                    class="hosting-video"
+                    controls
+                    playsinline
+                    preload="metadata"
+                  >
+                    <source
+                      src="assets/github-digitalocean-hosting.mp4"
+                      type="video/mp4"
+                    />
+                    Ваш браузер не поддерживает воспроизведение видео.
+                  </video>
+                  <figcaption>
+                    Как загрузить файлы на GitHub, подключить DigitalOcean и
+                    получить готовую ссылку
+                  </figcaption>
+                </figure>
+              </div>
             </article>
-            <div class="hosting-arrow">
-              <span>DNS</span>
-              <i>→</i>
-            </div>
-            <article class="hosting-node namecheap-node">
-              <span class="hosting-step">03 · Адрес</span>
-              <div class="hosting-logo">NC</div>
-              <h3>Namecheap</h3>
-              <p>Регистрирует собственное имя сайта.</p>
-              <strong>≈ $11 / год</strong>
+
+            <article class="hosting-roadmap-card telegram-step">
+              <div class="telegram-info">
+                <span class="hosting-step">Шаг 03</span>
+                <figure class="botfather-preview">
+                  <img src="assets/botfather.jpg" alt="BotFather в Telegram" loading="lazy" />
+                  <figcaption>Для подключения Mini App понадобится бот @BotFather</figcaption>
+                </figure>
+                <div class="telegram-step-copy">
+                  <h3>Подключите приложение к Telegram</h3>
+                  <p>
+                    Когда ссылка уже есть, переходим в Telegram и создаём бота
+                    через <strong>@BotFather</strong>. Именно туда мы передадим
+                    ссылку на Mini App, чтобы приложение открывалось внутри Telegram.
+                  </p>
+                  <ol>
+                    <li>Открываем Telegram и находим <strong>@BotFather</strong>.</li>
+                    <li>Создаём нового бота или выбираем уже созданного.</li>
+                    <li class="digitalocean-link-step">
+                      <strong>Вставляем скопированную ссылку DigitalOcean из шага 02</strong>
+                      как ссылку на Web App / Mini App.
+                    </li>
+                  </ol>
+                </div>
+              </div>
+
+              <figure class="hosting-video-wrap telegram-video-wrap">
+                <video
+                  class="hosting-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+                  <source
+                    src="assets/telegram-botfather-connection.mp4"
+                    type="video/mp4"
+                  />
+                  Ваш браузер не поддерживает воспроизведение видео.
+                </video>
+                <figcaption>
+                  Как подключить Telegram Mini App через BotFather
+                </figcaption>
+              </figure>
             </article>
           </div>
+        </div>
+      </section>
 
-          <div class="hosting-cards">
-            <article class="hosting-card">
-              <div class="hosting-card-top">
-                <span class="card-service">GitHub</span>
-                <span class="price-pill free">Бесплатно</span>
-              </div>
-              <h3>Дом для вашего кода</h3>
-              <p>
-                Проект хранится в репозитории. Можно видеть каждое изменение,
-                вернуться к старой версии, работать вместе и подключить
-                автоматическую публикацию.
-              </p>
-              <ul>
-                <li>Неограниченные публичные и приватные репозитории</li>
-                <li>Резервная копия и история проекта</li>
-                <li>DigitalOcean забирает код прямо отсюда</li>
-              </ul>
-              <div class="price-detail">
-                <span>Для нашего сценария</span>
-                <b>$0 в месяц</b>
-              </div>
-              <a
-                class="source-link"
-                href="https://github.com/pricing"
-                target="_blank"
-                rel="noreferrer"
-              >Посмотреть тарифы ↗</a>
-            </article>
-
-            <article class="hosting-card featured-hosting">
-              <div class="hosting-card-top">
-                <span class="card-service">DigitalOcean</span>
-                <span class="price-pill">Основной хостинг</span>
-              </div>
-              <h3>Место, где работает проект</h3>
-              <p>
-                App Platform подключается к GitHub, собирает приложение,
-                выдаёт интернет-адрес и автоматически публикует новые версии
-                после обновления кода.
-              </p>
-              <ul>
-                <li>Статический сайт: до 3 приложений бесплатно</li>
-                <li>Приложение с серверной логикой: от $5 в месяц</li>
-                <li>HTTPS и подключение собственного домена включены</li>
-              </ul>
-              <div class="price-detail">
-                <span>Ориентир</span>
-                <b>$0 сайт · от $5 сервис</b>
-              </div>
-              <a
-                class="source-link"
-                href="https://www.digitalocean.com/pricing/app-platform"
-                target="_blank"
-                rel="noreferrer"
-              >Посмотреть тарифы ↗</a>
-            </article>
-
-            <article class="hosting-card">
-              <div class="hosting-card-top">
-                <span class="card-service">Namecheap</span>
-                <span class="price-pill optional">Опционально</span>
-              </div>
-              <h3>Красивое имя сайта</h3>
-              <p>
-                Домен — это адрес вроде <strong>mybrand.com</strong>. Он нужен,
-                если вы не хотите использовать техническую ссылку хостинга.
-                Сам домен не хранит сайт.
-              </p>
-              <ul>
-                <li>Зона .com: $10.98 за первый год</li>
-                <li>Продление .com: $18.48 в год</li>
-                <li>Цена зависит от зоны и доступности имени</li>
-              </ul>
-              <div class="price-detail">
-                <span>Дополнительно</span>
-                <b>возможный сбор ICANN $0.20 / год</b>
-              </div>
-              <a
-                class="source-link"
-                href="https://www.namecheap.com/domains/registration/gtld/com/"
-                target="_blank"
-                rel="noreferrer"
-              >Проверить цену домена ↗</a>
-            </article>
+      <section class="final-offer" id="next-step">
+        <div class="shell">
+          <div class="final-offer-head">
+            <span>Следующий шаг</span>
+            <h2>Хотите продолжить<br /><em>и создать свой проект?</em></h2>
+            <p>
+              Выберите личную работу со мной или оставьте заявку на следующий
+              поток онлайн-курса.
+            </p>
           </div>
 
-          <div class="hosting-sequence">
-            <div class="sequence-title">
-              <span>Коротко</span>
-              <h3>Что делаем после создания проекта</h3>
-            </div>
-            <ol>
-              <li>
-                <span>01</span>
-                <div><b>Отправляем код в GitHub</b><p>Создаём репозиторий и сохраняем проект.</p></div>
-              </li>
-              <li>
-                <span>02</span>
-                <div><b>Подключаем DigitalOcean</b><p>Выбираем репозиторий и нажимаем Deploy.</p></div>
-              </li>
-              <li>
-                <span>03</span>
-                <div><b>Проверяем ссылку</b><p>DigitalOcean выдаёт готовый адрес с HTTPS.</p></div>
-              </li>
-              <li>
-                <span>04</span>
-                <div><b>Подключаем домен</b><p>Покупаем имя в Namecheap и настраиваем DNS.</p></div>
-              </li>
-            </ol>
-          </div>
+          <div class="offer-grid">
+            <article class="offer-card personal-offer">
+              <span class="offer-label">Личная работа · 3 занятия</span>
+              <h3>Создаём ваш проект вместе</h3>
+              <p class="offer-lead">
+                Три персональных занятия — чтобы перейти от идеи к работающему
+                результату.
+              </p>
+              <ul class="offer-benefits">
+                <li>Создадим сайт, приложение или AI-сервис с нуля.</li>
+                <li>
+                  Доработаем ваш проект: разберём структуру, исправим ошибки и
+                  настроим ключевые функции.
+                </li>
+                <li>
+                  По вашему запросу изучим <strong>Claude Code</strong>, его
+                  внутренние функции и приложения.
+                </li>
+              </ul>
 
-          <div class="hosting-budget">
-            <div>
-              <span>Минимальный бюджет</span>
-              <h3>Сколько закладывать?</h3>
-            </div>
-            <div class="budget-options">
-              <div>
-                <b>$0</b>
-                <span>Учебный или статический сайт без своего домена</span>
+              <div class="offer-price">
+                <span>25 990 ₽</span>
+                <strong>17 990 ₽</strong>
               </div>
-              <div>
-                <b>≈ $11 / год</b>
-                <span>Статический сайт с доменом .com в первый год</span>
+              <div class="offer-saving">Специальная цена на пакет из 3 занятий</div>
+
+              <a
+                class="offer-button offer-button-light"
+                href="https://t.me/efimova_polina"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Написать Полине в Telegram ↗
+              </a>
+            </article>
+
+            <article class="offer-card course-offer">
+              <span class="offer-label">Следующий поток</span>
+              <h3>Онлайн-курс по вайбкодингу</h3>
+              <p>
+                Текущий поток уже стартовал и полностью заполнен. Если вы
+                хотите присоединиться к следующему набору, оставьте заявку —
+                я сообщу вам, когда откроется регистрация.
+              </p>
+
+              <div class="promo-box">
+                <span>Сохраните промокод</span>
+                <strong>VIBE10</strong>
+                <p>Он даст скидку 10% на следующий поток онлайн-курса.</p>
               </div>
-              <div>
-                <b>от $5 / мес.</b>
-                <span>Приложение или сервис с серверной логикой</span>
-              </div>
-            </div>
-            <small>
-              Цены сверены 27 июня 2026 года. Акции, налоги, трафик и стоимость
-              других доменных зон могут изменить итоговую сумму.
-            </small>
+
+              <a
+                class="offer-button offer-button-blue"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfyQD_KaZ0d2WkT6Wv5zjNFmFtI4LhfazPVxW7hVR6qQxATQA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Оставить заявку на курс ↗
+              </a>
+            </article>
           </div>
         </div>
       </section>
